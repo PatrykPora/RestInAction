@@ -5,17 +5,21 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class MessageController {
 
+    @ResponseBody
     @RequestMapping(method = RequestMethod.GET, path = "/api/hello")
-    public ResponseEntity<Message> sayHello(){
-        return ResponseEntity.ok().body(new Message("sayHello"));
+    public Message sayHello() {
+        return new Message("sayHello");
     }
 
+    @ResponseBody
     @RequestMapping(method = RequestMethod.GET, path = "/api/hi")
-    public ResponseEntity<String> sayHi(){
-        return ResponseEntity.ok().body("sayHi");
+    public String sayHI() {
+        return "sayHi";
     }
+
 }
