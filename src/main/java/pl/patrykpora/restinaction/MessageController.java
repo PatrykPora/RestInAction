@@ -1,6 +1,7 @@
 package pl.patrykpora.restinaction;
 
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -31,12 +32,14 @@ public class MessageController {
         return new Message("sayHello " + id);
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
     @RequestMapping(value = "/api/messages", method = RequestMethod.POST)
     public void createMessage(@RequestBody final Message message){
         messages.add(message);
     }
 
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @ResponseBody
     @RequestMapping(value = "api/messages/{index}", method = RequestMethod.PUT)
     public void updateMessage(@RequestBody final Message message, @PathVariable final Integer index){
